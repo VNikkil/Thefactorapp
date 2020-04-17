@@ -325,23 +325,26 @@ public class MainActivity extends AppCompatActivity {
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
                 score = 0;
                 scoreview.setText(" " + score);
 
-                value.setText(null );
+                value.setText("5");
                 value.setHint("Enter a number ");
                 optionA.setText("A");
                 optionB.setText("B");
                 optionC.setText("C");
 
-                answer.setText(null);
-                time.setText(null);
-                curr_Streak.setText("0");
+                answer.setText(" ");
+                time.setText("0");
+                curr_Streak.setText("Current STREAK : 0");
                 scoreview.setText("0");
 
-            }
-        }, 5000);
-
+                    }
+                });
+            }}, 6000);
 
     }
 
