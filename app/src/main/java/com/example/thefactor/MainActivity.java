@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
     public void factors() {
         Random rand = new Random();
         choice = rand.nextInt(3);
-        int temporary= rand.nextInt(number)+1;
+        int temporary= rand.nextInt(number/5)+1;
 
         if (choice == 0) {
            while(number % temporary != 0)
@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
             fixed = temporary;
         }
 
-        temporary = rand.nextInt(number) + 1;
+        temporary = rand.nextInt(number/5) + 1;
 
 
         if (choice == 1) {
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             fixed = temporary;
         }
 
-        temporary= rand.nextInt(number)+1;
+        temporary= rand.nextInt(number/5)+1;
 
         if (choice == 2) {
             while(number % temporary != 0)
