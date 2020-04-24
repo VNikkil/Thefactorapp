@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.VibrationEffect;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     TextView time, answer,scoreview,max_Streak,curr_Streak;
     EditText value;
     CountDownTimer timer;
+    int fixed = 0;
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -86,14 +88,13 @@ public class MainActivity extends AppCompatActivity {
         if (OptionChosen == true) {
             number = Integer.parseInt(value.getText().toString());
             if (prev_number != number) {
-                counter = 0;
-                OptionChosen = false;
 
                 if (number > 0) {
+                    counter = 0;
+                    OptionChosen = false;
                     reset();
                     value.setFocusable(false);
                     factors();
-
                 }
             }
         }
@@ -147,39 +148,51 @@ public class MainActivity extends AppCompatActivity {
     public void factors() {
         Random rand = new Random();
         choice = rand.nextInt(3);
-        int temporary= rand.nextInt(number);
+        int temporary= rand.nextInt(number)+1;
 
         if (choice == 0) {
            while(number % temporary != 0)
                temporary++;
             optionA.setText(Integer.toString(temporary));
         } else {
+            Log.i(TAG," "+temporary);
             while(number % temporary == 0)
                 temporary++;
             optionA.setText(Integer.toString(temporary));
+            fixed = temporary;
         }
 
-        temporary= rand.nextInt(number);
+        temporary = rand.nextInt(number) + 1;
+
 
         if (choice == 1) {
             while(number % temporary != 0)
             temporary++;
             optionB.setText(Integer.toString(temporary));
         } else {
-            while(number % temporary == 0)
+            Log.i(TAG," "+temporary);
+            while(number % temporary == 0  ) {
                 temporary++;
+                if (temporary == fixed)
+                    temporary++;
+            }
             optionB.setText(Integer.toString(temporary));
+            fixed = temporary;
         }
 
-        temporary= rand.nextInt(number);
+        temporary= rand.nextInt(number)+1;
 
         if (choice == 2) {
             while(number % temporary != 0)
                 temporary++;
             optionC.setText(Integer.toString(temporary));
         } else {
-            while(number % temporary == 0)
+            Log.i(TAG," "+temporary);
+            while(number % temporary == 0  ) {
                 temporary++;
+                if (temporary == fixed)
+                    temporary++;
+            }
             optionC.setText(Integer.toString(temporary));
         }
 
